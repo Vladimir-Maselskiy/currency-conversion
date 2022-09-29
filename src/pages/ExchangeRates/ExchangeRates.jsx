@@ -1,4 +1,1 @@
-
-export const ExchangeRates = () => {
-	return ;
-};
+export const ExchangeRates = () => {};

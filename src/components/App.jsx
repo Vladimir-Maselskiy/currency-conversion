@@ -24,8 +24,8 @@ export const App = () => {
       >
         <LinksButtonBlock width="100%" height={56}></LinksButtonBlock>
         <Routes>
+          <Route path="/convert" element={<ConvertBar />}></Route>
           <Route path="/exchange-rates" element={<ExchangeRates />}></Route>
-          <Route path="/" element={<ConvertBar />}></Route>
         </Routes>
       </Box>
     </Box>
