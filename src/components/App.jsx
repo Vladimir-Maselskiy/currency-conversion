@@ -1,14 +1,25 @@
 // import { getCurrecy } from "../util/apilayer-api";
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { getCurrecy, getRates } from 'util/apilayer-api';
 import { Conver } from '../pages/Convert/Convert';
 import { ExchangeRates } from '../pages/ExchangeRates/ExchangeRates';
 import { Box } from './Box/Box';
 import { LinksButtonBlock } from './LinksButtonBlock/LinksButtonBlock';
+// import symbol from '../data/symbol.json';
+// import rates from '../data/dev-rates.json';
 
 export const App = () => {
-  // getCurrecy().then((resp) => {
-  // 	console.log(resp.data.symbols);
-  // });
+  const [symbol, setSymbol] = useState({});
+  const [rates, setRates] = useState({});
+
+  useEffect(() => {
+    getCurrecy().then(resp => {
+      setSymbol(resp.data.symbols);
+    });
+
+    getRates().then(resp => setRates(resp.data.rates));
+  }, []);
 
   return (
     <Box width="100%">
@@ -23,8 +34,14 @@ export const App = () => {
       >
         <LinksButtonBlock width="100%" height={56}></LinksButtonBlock>
         <Routes>
-          <Route path="/convert" element={<Conver />}></Route>
-          <Route path="/exchange-rates" element={<ExchangeRates />}></Route>
+          <Route
+            path="/convert"
+            element={<Conver symbol={symbol} rates={rates} />}
+          ></Route>
+          <Route
+            path="/exchange-rates"
+            element={<ExchangeRates symbol={symbol} rates={rates} />}
+          ></Route>
         </Routes>
       </Box>
     </Box>

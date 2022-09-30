@@ -6,11 +6,10 @@ import { InvalidDataMessage } from './InvalidDataMessage/InvalidDataMessage';
 import { SelectFrom } from './SelectFrom/SelectFrom';
 import { SelectTo } from './SelectTo/SelectTo';
 import { SwapButton } from './SwapButton/SwapButton';
-import symbol from '../../data/symbol.json';
-import rates from '../../data/dev-rates.json';
+
 import { ConvertInfo } from './ConvertInfo/ConvertInfo';
 
-export const Conver = () => {
+export const Conver = ({ symbol, rates }) => {
   const [inputValue, setInputValue] = useState('');
   const [isConvertButtonDisabled, setIsConvertButtonDisabled] = useState(true);
   const [isValidData, setIsValidData] = useState(true);
@@ -32,12 +31,12 @@ export const Conver = () => {
     } else {
       setIsValidData(true);
     }
-    if (inputValue !== '' && !isNaN(inputValue)) {
+    if (inputValue !== '' && !isNaN(inputValue) && valueFrom && valueTo) {
       setIsConvertButtonDisabled(false);
     } else {
       setIsConvertButtonDisabled(true);
     }
-  }, [inputValue]);
+  }, [inputValue, valueFrom, valueTo]);
 
   useEffect(() => {
     if (valueFrom) setCurrencyAbbr(valueFrom.value);
@@ -59,6 +58,10 @@ export const Conver = () => {
     const obj = valueFrom;
     setValueFrom(valueTo);
     setValueTo(obj);
+  };
+
+  const onConvertButtonClick = () => {
+    setIsConvertInfoVisible(true);
   };
 
   return (
@@ -96,14 +99,19 @@ export const Conver = () => {
           />
         </Box>
       </Box>
-      <ConvertInfo
-        isVisible={isConvertInfoVisible}
-        amount={inputValue}
-        from={valueFrom}
-        to={valueTo}
-        rates={rates}
+      {isConvertInfoVisible && (
+        <ConvertInfo
+          isVisible={isConvertInfoVisible}
+          amount={inputValue}
+          from={valueFrom}
+          to={valueTo}
+          rates={rates}
+        />
+      )}
+      <ConvertButton
+        onClick={onConvertButtonClick}
+        disabled={isConvertButtonDisabled}
       />
-      <ConvertButton disabled={isConvertButtonDisabled} />
     </Box>
   );
 };

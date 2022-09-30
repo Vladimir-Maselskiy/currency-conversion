@@ -1,8 +1,6 @@
 import axios from 'axios';
 
 const options = {
-  method: 'GET',
-  url: 'https://api.apilayer.com/exchangerates_data/symbols',
   headers: {
     apikey: 'v0IjMpN3LUEdX80HWlsvdyrmPNxd8j9w',
   },
@@ -10,11 +8,21 @@ const options = {
 
 export const getCurrecy = () => {
   return axios
-    .request(options)
-    .then(function (response) {
-      return response;
+    .get('https://api.apilayer.com/exchangerates_data/symbols', options)
+    .then(resp => {
+      console.log(resp);
+      return resp;
     })
     .catch(function (error) {
       console.error(error);
+    });
+};
+
+export const getRates = () => {
+  return axios
+    .get('https://api.apilayer.com/exchangerates_data/latest', options)
+    .then(resp => {
+      console.log(resp);
+      return resp;
     });
 };
