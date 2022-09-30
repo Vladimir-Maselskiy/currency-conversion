@@ -23,7 +23,7 @@ export const Conver = ({ symbol, rates }) => {
     setCurrensies(
       Object.keys(symbol).map(key => ({ value: key, label: symbol[key] }))
     );
-  }, []);
+  }, [symbol]);
 
   useEffect(() => {
     if (inputValue !== '' && isNaN(inputValue)) {
