@@ -6,8 +6,6 @@ import { Conver } from '../pages/Convert/Convert';
 import { ExchangeRates } from '../pages/ExchangeRates/ExchangeRates';
 import { Box } from './Box/Box';
 import { LinksButtonBlock } from './LinksButtonBlock/LinksButtonBlock';
-// import symbol from '../data/symbol.json';
-// import rates from '../data/dev-rates.json';
 
 export const App = () => {
   const [symbol, setSymbol] = useState({});
