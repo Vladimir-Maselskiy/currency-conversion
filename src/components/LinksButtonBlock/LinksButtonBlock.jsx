@@ -13,7 +13,7 @@ export const LinksButtonBlock = () => {
       borderTopRightRadius={8}
       overflow="hidden"
     >
-      <StyledNavLink to="/convert">
+      <StyledNavLink to="/">
         <BsCurrencyExchange />
         <span>Convert</span>
       </StyledNavLink>

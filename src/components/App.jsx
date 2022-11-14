@@ -33,7 +33,7 @@ export const App = () => {
         <LinksButtonBlock width="100%" height={56}></LinksButtonBlock>
         <Routes>
           <Route
-            path="/convert"
+            path="/"
             element={<Conver symbol={symbol} rates={rates} />}
           ></Route>
           <Route
