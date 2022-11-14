@@ -2,7 +2,7 @@
   "name": "currency-conversion",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vladimir-maselskiy.github.io/currency-conversion/convert",
+  "homepage": "https://vladimir-maselskiy.github.io/currency-conversion/convert/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
